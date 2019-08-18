@@ -1,0 +1,20 @@
+{% extends 'polls/base.html' %}
+{% block title %} Each Choice details {% endblock %}
+{% block body %}
+    <h2>{{ question.question_text }}</h2>
+    {% if error_message %}<!--i.e. if the error message is true and also note these is process in form only.-->
+        <p><strong>{{ error_message }}</strong></p>
+    {% endif %}
+
+    <!--Constructing the form-->
+
+    <form action="{% url 'polls:vote' question.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in question.choice_set.all %}
+            <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+            <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br/>
+        {% endfor %}
+
+        <button class="w3-btn w3-blue-grey">Vote</button>
+    </form>
+{% endblock %}
