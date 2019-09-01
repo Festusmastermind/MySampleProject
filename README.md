@@ -1,2 +1,3 @@
 # MySampleProject
 This project can be transformed and reshaped for your purpose if you are cloning this test application...
+This is pull request practice
